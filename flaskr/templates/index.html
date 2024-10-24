@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<script src="{{url_for('static', filename='js/firstpage.js')}}"></script>
+  <h1>{% block title %}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-9">
+    <nav>
+      <h1 >第一届山东政法学院AI竞赛提交系统</h1>
+    </nav>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-5"><a href="https://pan.baidu.com/s/1GV667HhmQffwYiRiAHF7JQ?pwd=tqbp">赛题链接点击这里！</a></div>
+  </div>
+<div class="row submit-form-div">
+  <div class="col-md-4"></div>
+  <div class="col-md-5">
+    <div class="form-group">
+    <label for="groupname">团队名称</label>
+    <input name="groupname" id="groupname" placeholder="请输入队伍名称" required>
+  </div>
+  <div class="form-group">
+    <label for="gametag">赛题选择</label>
+    <select name="gametag" id="gametag" required>
+        <option selected="true">赛题1</option>
+        <option>赛题2</option>
+    </select> 
+  </div>
+  <div class="form-group">
+    <label for="fileselect">结果文件</label>
+    <input type="file" name="fileselect" id="fileselect" required>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+  <button  class="btn btn-primary" id="sub-btn">提交</button>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="row" id="submit_warning_div" >
+  <div class="col-md-4"></div>
+  <div class="col-md-5"><span >提交成功，正在计算....</span></div>
+</div>
+<div class="row" id="score_div" >
+  <div class="col-md-4"></div>
+  <div class="col-md-5"><span >本次分数为：</span>
+    <span  id="score_span"></span></div>
+</div>
+<div class="row rank-tile-div">
+  <div class="col-md-4"></div>
+  <div class="col-md-6 col-md-offset-3">
+    <h1>竞赛排行榜</h1>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-2"> </div>
+        <div class="col-md-4"><h2> 赛题1</h2>
+        </div>
+      </div>
+      <div class="row game-record-div">
+        <table class="table">
+          <caption>队伍排名</caption>
+          <thead>
+            <tr>
+              <th>排名</th>
+              <th>队伍名称</th>
+              <th>分数</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for  item in game1_rank_list %}
+            <tr>
+              <td>{{ item["order"] }}</td>
+              <td>{{  item["name"] }}</td>
+              <td>{{  item["score"] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+      
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4"> </div>
+        <div class="col-md-4"><h2> 赛题2</h2>
+      </div>
+    </div>
+    <div class="row game-record-div">
+      <table class="table">
+        <caption>队伍排名</caption>
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>队伍名称</th>
+            <th>分数</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for  item in game2_rank_list %}
+          <tr>
+            <td>{{ item["order"] }}</td>
+            <td>{{  item["name"] }}</td>
+            <td>{{  item["score"] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+  </div>
+</div>
+</body>
+{% endblock %}
